@@ -1,0 +1,43 @@
+<ion-header translucent no-shadow>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModal()">
+        <ion-icon color="light" slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="movie" class="background-content">
+  <ion-row class="ion-justify-content-center">
+    <img class="movie-img" [src]="movie.imageUrl" alt="imagen de la pelicula" />
+  </ion-row>
+  <form [formGroup]="ionicForm" (ngSubmit)="editMovie()" novalidate>
+    <ion-item>
+      <ion-label position="fixed">Nombre</ion-label>
+      <ion-input [value]="movie.name"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="fixed">Sinopsis</ion-label>
+      <ion-textarea rows="8" [value]="movie.description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Categoria</ion-label>
+      <ion-input [value]="movie.category"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="fixed">Valoración</ion-label>
+    </ion-item>
+    <app-rate-movie
+      [stars]="movie.stars"
+      (updateMovie)="updateMovieRate($event)"
+    ></app-rate-movie>
+    <ion-button
+      type="submit"
+      class="ion-margin-vertical"
+      color="primary"
+      expand="block"
+      fill="solid"
+      >Guardar</ion-button
+    >
+  </form>
+</ion-content>

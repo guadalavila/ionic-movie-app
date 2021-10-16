@@ -1,0 +1,16 @@
+<ion-item class="movie" lines="none">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" class="ion-padding-vertical">
+        <img class="movie-image" [src]="movie.imageUrl" />
+      </ion-col>
+      <ion-col>
+        <h4>{{ movie?.name }}</h4>
+        <p>
+          <ion-icon *ngFor="let star of stars" slot="icon-only" [name]="star" color="warning"></ion-icon>
+        </p>
+        <small>{{ movie?.category }}</small>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>

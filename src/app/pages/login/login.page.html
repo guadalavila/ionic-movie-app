@@ -1,0 +1,40 @@
+<ion-content class="background-content">
+  <ion-item lines="none" class="ion-margin-top">
+    <h1>Iniciar Sesión</h1>
+  </ion-item>
+  <ion-row class="ion-justify-content-center ion-margin">
+    <img
+      height="150"
+      src="https://images.vexels.com/media/users/3/191710/isolated/preview/9c2eb258b1e7e08653e989a74d76ef89-buen-trazo-de-claqueta.png"
+      alt="Login Movie"
+    />
+  </ion-row>
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="text" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input
+        formControlName="password"
+        type="password"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-row class="ion-padding">
+      <ion-col>
+        <ion-button type="submit" color="dark" expand="block" fill="solid"
+          >Ingresar</ion-button
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding">
+      <ion-col>
+        <ion-button color="primary" expand="block" fill="clear" routerLink="/signin"
+          >Registrarme</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

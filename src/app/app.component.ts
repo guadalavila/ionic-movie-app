@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    console.log('Inicializando');
+  }
+
+
+
 }

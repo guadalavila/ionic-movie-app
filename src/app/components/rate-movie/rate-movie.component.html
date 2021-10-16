@@ -1,0 +1,5 @@
+<div class="rate-app" >
+  <ion-button class="rate-app-star" fill="clear" size="small" *ngFor="let star of icons; let i=index" (click)="updateRateFilm(i+1)" >
+    <ion-icon slot="icon-only" [name]="star" color="warning"></ion-icon>
+  </ion-button>
+</div>

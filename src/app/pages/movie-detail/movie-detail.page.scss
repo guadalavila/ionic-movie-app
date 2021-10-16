@@ -1,0 +1,16 @@
+.image {
+  max-height: 300px;
+  margin: auto;
+  object-fit: cover;
+  border-radius: 2.5rem;
+}
+
+.background-content {
+  --ion-background-color: #eaebee;
+}
+
+.btn-add-favorite {
+  position: absolute;
+  right: 1em;
+  z-index: 999;
+}

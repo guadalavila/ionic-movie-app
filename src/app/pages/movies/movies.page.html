@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end" size="small" fill="clear" routerLink="/favorites">
+      <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title>Peliculas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="background-content">
+  <app-skeleton *ngIf="loading"></app-skeleton>
+  <ion-list *ngFor="let movie of movieList">
+    <app-item-movie [movie]="movie" (click)="goToDetail(movie)"></app-item-movie>
+  </ion-list>
+</ion-content>
