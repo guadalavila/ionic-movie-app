@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { HelpersService } from 'src/app/services/helpers.service';
 
 @Component({
@@ -15,7 +17,8 @@ export class LoginPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public helperService: HelpersService,
-    public navController: NavController
+    public navController: NavController,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -56,13 +59,22 @@ export class LoginPage implements OnInit {
     }
   }
 
-  submitForm() {
+  async submitForm() {
     this.isSubmitted = true;
     if (!this.ionicForm.valid) {
       this.presentToast(this.getErrorMessage);
       return false;
     } else {
-      this.navController.navigateRoot('/movies');
+      const user = this.ionicForm.value as User;
+      const loading = await this.helperService.showLoading('Ingresando');
+      loading.present();
+      this.authService.signinUser(user.email, user.password).then(res=>{
+        loading.dismiss();
+        this.navController.navigateRoot('/movies');
+      }, () =>{
+        loading.dismiss();
+        this.presentToast('Error al ingresar, email o contraseña incorrectos');
+      });
       return true;
     }
   }

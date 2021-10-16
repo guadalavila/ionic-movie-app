@@ -16,22 +16,14 @@
     />
   </ion-row>
   <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
-    <ion-item lines="full">
+    <ion-item>
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email" type="text" required></ion-input>
     </ion-item>
-    <ion-item lines="full">
+    <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input
         formControlName="password"
-        type="password"
-        required
-      ></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Repetir Contraseña</ion-label>
-      <ion-input
-        formControlName="passwordConfirm"
         type="password"
         required
       ></ion-input>

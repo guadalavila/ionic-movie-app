@@ -47,4 +47,18 @@ export class HelpersService {
       translucent: true,
     });
   }
+
+
+  showAlertConfirm(header: string, message: string, handlerPress: any){
+    return this.alertController.create({
+      header,
+      message,
+      backdropDismiss: false,
+      buttons: [
+      {
+          text: 'Aceptar',
+          handler: () => handlerPress()
+      }]
+    });
+  }
 }
