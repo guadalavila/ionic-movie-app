@@ -17,11 +17,12 @@ export class MoviesService {
     return this.firestore.collection('movies').snapshotChanges();
   }
 
+  getMovie(id: string) {
+    return this.firestore.collection('movies').doc(id).valueChanges();
+  }
+
   updateMovie(id: string, movie: Movie) {
-    this.firestore.collection('movies').doc(id).update(movie)
-      .then((res) => {
-        console.log(res);
-      }).catch(error => console.log(error));;
+    return this.firestore.collection('movies').doc(id).update(movie);
   }
 
   deleteMovie(id: string) {

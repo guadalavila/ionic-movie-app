@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { FavoritesPage } from './favorites.page';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    SharedModule
   ],
   declarations: [FavoritesPage]
 })

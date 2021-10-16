@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { MovieDetailPage } from './movie-detail.page';
 import { RouterModule, Routes } from '@angular/router';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -20,8 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule,
   ],
   declarations: [MovieDetailPage]
 })

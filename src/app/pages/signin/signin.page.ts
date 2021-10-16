@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Component({
   selector: 'app-signin',
@@ -12,7 +12,7 @@ export class SigninPage implements OnInit {
   ionicForm: FormGroup;
   isSubmitted = false;
 
-  constructor(public formBuilder: FormBuilder, public toastController: ToastController) { }
+  constructor(public formBuilder: FormBuilder, public helperService: HelpersService) { }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
@@ -23,13 +23,10 @@ export class SigninPage implements OnInit {
   }
 
   async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      animated: true,
+    const toast = await this.helperService.showToast({
       header: 'Error',
-      position: 'top',
       message,
-      duration: 3500,
-      cssClass: 'toast-style'
+      type: 'error'
     });
     toast.present();
   }
@@ -60,7 +57,6 @@ export class SigninPage implements OnInit {
       return false;
     } else {
       // this.navController.navigateRoot('/login');
-      console.log(this.ionicForm.value);
       return true;
     }
   }

@@ -4,15 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPage } from './login.page';
-import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from 'src/app/shared/shared.module';
 
+import { MovieEditPage } from './movie-edit.page';
+import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPage
+    component: MovieEditPage
   }
 ];
 
@@ -25,6 +25,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [LoginPage]
+  declarations: [MovieEditPage]
 })
-export class LoginPageModule {}
+export class MovieEditPageModule {}

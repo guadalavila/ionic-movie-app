@@ -6,9 +6,9 @@ import {
   LoadingController,
   ModalController,
 } from '@ionic/angular';
-import { EditMovieComponent } from 'src/app/components/edit-movie/edit-movie.component';
 import { PROPERTY_FAVORITES } from 'src/app/config/const';
 import { Movie } from 'src/app/models/movie.model';
+import { EventsService } from 'src/app/services/events.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -20,6 +20,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class MovieDetailPage implements OnInit {
   public movie: Movie;
   public isFavorite = false;
+  private refreshMovie = false;
 
   constructor(
     private router: Router,
@@ -28,12 +29,32 @@ export class MovieDetailPage implements OnInit {
     private utilsService: UtilsService,
     private moviesService: MoviesService,
     public loadingController: LoadingController,
-    private modalController: ModalController
-  ) {}
+    private modalController: ModalController,
+    public event: EventsService
+  ) {
+    this.event.getObservable().subscribe((data) => {
+      if (data === 'updateMovie') {
+        this.refreshMovie = true;
+      }
+    });
+  }
 
   ngOnInit() {
     this.movie = this.router.getCurrentNavigation().extras.state as Movie;
     this.isFavorite = this.utilsService.isFavoriteMovie(this.movie.name);
+  }
+
+  ionViewDidEnter() {
+    if (this.refreshMovie) {
+      this.updateMovie();
+    }
+  }
+
+
+  updateMovie() {
+    this.moviesService.getMovie(this.movie.id).subscribe((res) => {
+      this.movie = res as Movie;
+    });
   }
 
   showMoreActions() {
@@ -47,18 +68,20 @@ export class MovieDetailPage implements OnInit {
         {
           text: 'Editar Pelicula',
           icon: 'pencil',
-          handler: async ()  => {
-            const modal = await this.modalController.create({
-              component: EditMovieComponent,
-              swipeToClose: true,
-              mode: 'md',
-              animated: true,
-              backdropDismiss: true,
-              componentProps: { ...this.movie}
+          handler: async () => {
+            // const modal = await this.modalController.create({
+            //   component: EditMovieComponent,
+            //   swipeToClose: true,
+            //   mode: 'md',
+            //   animated: true,
+            //   backdropDismiss: true,
+            //   componentProps: { ...this.movie}
+            // });
+            // return await modal.present();
+            // this.router.navigateByUrl('movies/detail/edit');
+            this.router.navigate(['/movies/detail/edit'], {
+              state: { ...this.movie },
             });
-            return await modal.present();
-
-
           },
         },
         {

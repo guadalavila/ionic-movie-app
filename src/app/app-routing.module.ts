@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/movie-detail/movie-detail.module').then( m => m.MovieDetailPageModule)
   },
   {
+    path: 'movies/detail/edit',
+    loadChildren: () => import('./pages/movie-edit/movie-edit.module').then( m => m.MovieEditPageModule)
+  },
+  {
     path: 'favorites',
     loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
   },

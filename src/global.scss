@@ -25,7 +25,17 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.toast-style {
+.toast-style-danger {
   color: var(--ion-color-light);
   --background: var(--ion-color-danger);
+}
+
+.toast-style-warning {
+  color: var(--ion-color-light);
+  --background: var(--ion-color-warning);
+}
+
+.toast-style-success {
+  color: var(--ion-color-light);
+  --background: var(--ion-color-success);
 }

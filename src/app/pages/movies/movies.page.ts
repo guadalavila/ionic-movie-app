@@ -18,6 +18,8 @@ export class MoviesPage implements OnInit {
     this.getMovies();
   }
 
+
+
   getMovies() {
     this.moviesService.getMovies().subscribe(res =>{
       this.movieList = res.map((movie) =>({
@@ -25,7 +27,6 @@ export class MoviesPage implements OnInit {
             ...movie.payload.doc.data() as Movie
           }));
       this.loading = false;
-      console.log(this.movieList);
     });
   }
 
