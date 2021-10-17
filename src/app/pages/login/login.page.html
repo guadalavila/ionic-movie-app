@@ -3,11 +3,12 @@
     <h1>Iniciar Sesión</h1>
   </ion-item>
   <ion-row class="ion-justify-content-center ion-margin">
-    <img
-      height="150"
-      src="https://images.vexels.com/media/users/3/191710/isolated/preview/9c2eb258b1e7e08653e989a74d76ef89-buen-trazo-de-claqueta.png"
-      alt="Login Movie"
-    />
+    <img class="login-image" height="150" [src]="image" alt="Imagen Login" />
+  </ion-row>
+  <ion-row class="ion-justify-content-center login-button-upload-image">
+    <ion-button fill="clear" size="large" (click)="selectImage()">
+      <ion-icon slot="icon-only" name="cloud-upload" color="dark"></ion-icon>
+    </ion-button>
   </ion-row>
   <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
     <ion-item lines="full">
@@ -31,7 +32,11 @@
     </ion-row>
     <ion-row class="ion-padding">
       <ion-col>
-        <ion-button color="primary" expand="block" fill="clear" routerLink="/signin"
+        <ion-button
+          color="primary"
+          expand="block"
+          fill="clear"
+          routerLink="/signin"
           >Registrarme</ion-button
         >
       </ion-col>

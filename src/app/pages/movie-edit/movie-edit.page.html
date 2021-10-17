@@ -7,9 +7,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="background-content" *ngIf="movie">
-  <ion-row class="ion-justify-content-center">
-    <img class="movie-img" [src]="movie.imageUrl" alt="imagen de la pelicula" />
-  </ion-row>
   <form [formGroup]="ionicForm" (ngSubmit)="editMovie()" novalidate>
     <ion-item>
       <ion-label position="fixed">Nombre</ion-label>

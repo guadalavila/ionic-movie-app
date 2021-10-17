@@ -1,3 +1,15 @@
 .background-content {
   --ion-background-color: #eaebee;
 }
+
+.login-image {
+  opacity: 0.8;
+}
+
+.login-button-upload-image {
+  position: absolute;
+  right: 50%;
+  left: 50%;
+  top: 28%;
+  z-index: 999;
+}

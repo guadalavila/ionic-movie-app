@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { HelpersService } from 'src/app/services/helpers.service';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,14 @@ import { HelpersService } from 'src/app/services/helpers.service';
 export class LoginPage implements OnInit {
   ionicForm: FormGroup;
   isSubmitted = false;
+  image = '../../../assets/images/camera.png';
 
   constructor(
     public formBuilder: FormBuilder,
     public helperService: HelpersService,
     public navController: NavController,
     private authService: AuthService,
+    private imageService: ImageService
   ) {}
 
   ngOnInit() {
@@ -68,14 +71,30 @@ export class LoginPage implements OnInit {
       const user = this.ionicForm.value as User;
       const loading = await this.helperService.showLoading('Ingresando');
       loading.present();
-      this.authService.signinUser(user.email, user.password).then(res=>{
-        loading.dismiss();
-        this.navController.navigateRoot('/movies');
-      }, () =>{
-        loading.dismiss();
-        this.presentToast('Error al ingresar, email o contraseña incorrectos');
-      });
+      this.authService.signinUser(user.email, user.password).then(
+        (res) => {
+          loading.dismiss();
+          this.navController.navigateRoot('/movies');
+        },
+        () => {
+          loading.dismiss();
+          this.presentToast(
+            'Error al ingresar, email o contraseña incorrectos'
+          );
+        }
+      );
       return true;
     }
+  }
+
+  selectImage() {
+    this.imageService.getImage().then(
+      (imageSelect) => {
+        this.image = imageSelect;
+      },
+      () => {
+        this.presentToast('Error al cargar imagen');
+      }
+    );
   }
 }

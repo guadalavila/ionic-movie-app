@@ -1709,6 +1709,20 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz"
   "version" "1.2.0"
 
+"@ionic-native/core@^5.1.0":
+  "integrity" "sha512-lOrkktadlKYbYf1LrDyAtsu1JnQ0oCCdkOU7iHQ8oXnNOkMwobFfD2m62F1CoOr0u9LIkpYnZSPjng8lZbmbNw=="
+  "resolved" "https://registry.npmjs.org/@ionic-native/core/-/core-5.36.0.tgz"
+  "version" "5.36.0"
+  dependencies:
+    "@types/cordova" "latest"
+
+"@ionic-native/image-picker@^5.36.0":
+  "integrity" "sha512-6RzK9x3/lnYvCYHeAzZuYejUKIifSnFt79iP2DvSZZ+4bu+a72yvPXx3xtHZZZT4sp4+vgZZNRfBYAJAikx6uw=="
+  "resolved" "https://registry.npmjs.org/@ionic-native/image-picker/-/image-picker-5.36.0.tgz"
+  "version" "5.36.0"
+  dependencies:
+    "@types/cordova" "latest"
+
 "@ionic/angular-toolkit@^4.0.0":
   "integrity" "sha512-HGRAGUtc1YSwNZ/Q7X7c2QRyYM2AfsSm++OasPrMo3LnPRVr8OIsUih2ithEU7f3CXrViUR7j/Anu90zGsRgzg=="
   "resolved" "https://registry.npmjs.org/@ionic/angular-toolkit/-/angular-toolkit-4.0.0.tgz"
@@ -2003,6 +2017,11 @@
   "integrity" "sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q=="
   "resolved" "https://registry.npmjs.org/@types/cookie/-/cookie-0.4.1.tgz"
   "version" "0.4.1"
+
+"@types/cordova@latest":
+  "integrity" "sha1-6nrd907Ow9dimCegw54smt3HPQQ="
+  "resolved" "https://registry.npmjs.org/@types/cordova/-/cordova-0.0.34.tgz"
+  "version" "0.0.34"
 
 "@types/cors@^2.8.8":
   "integrity" "sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw=="
@@ -3592,6 +3611,11 @@
     "p-limit" "^3.1.0"
     "schema-utils" "^3.0.0"
     "serialize-javascript" "^5.0.1"
+
+"cordova-plugin-telerik-imagepicker@^2.3.6":
+  "integrity" "sha512-guf+BHB7O3g1ll3++d+aOvTGHXwBmqdxBFJTCKKMIGqazlf+Sq3Bsd1tRRswPRxy1MZRlJIe6Arz4pdCCmOigA=="
+  "resolved" "https://registry.npmjs.org/cordova-plugin-telerik-imagepicker/-/cordova-plugin-telerik-imagepicker-2.3.6.tgz"
+  "version" "2.3.6"
 
 "core-js-compat@^3.15.0", "core-js-compat@^3.16.2":
   "integrity" "sha512-4zP6/y0a2RTHN5bRGT7PTq9lVt3WzvffTNjqnTKsXhkAYNDTkdCLOIfAdOLcQ/7TDdyRj3c+NeHe1NmF1eDScw=="
@@ -6124,6 +6148,11 @@
     "@types/node" "*"
     "merge-stream" "^2.0.0"
     "supports-color" "^8.0.0"
+
+"jetifier@^2.0.0":
+  "integrity" "sha512-J4Au9KuT74te+PCCCHKgAjyLlEa+2VyIAEPNCdE5aNkAJ6FAJcAqcdzEkSnzNksIa9NkGmC4tPiClk2e7tCJuQ=="
+  "resolved" "https://registry.npmjs.org/jetifier/-/jetifier-2.0.0.tgz"
+  "version" "2.0.0"
 
 "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
@@ -8904,7 +8933,7 @@
   dependencies:
     "tslib" "^1.9.0 || ~2.1.0"
 
-"rxjs@^6.0.0 || ^7.0.0", "rxjs@^6.5.3", "rxjs@^6.6.2", "rxjs@^6.6.6", "rxjs@>=6.2.0", "rxjs@~6.6.0", "rxjs@~6.6.0 || ^7.0.0", "rxjs@6.6.7":
+"rxjs@^5.5.0 || ^6.5.0", "rxjs@^6.0.0 || ^7.0.0", "rxjs@^6.5.3", "rxjs@^6.6.2", "rxjs@^6.6.6", "rxjs@>=6.2.0", "rxjs@~6.6.0", "rxjs@~6.6.0 || ^7.0.0", "rxjs@6.6.7":
   "integrity" "sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-6.6.7.tgz"
   "version" "6.6.7"

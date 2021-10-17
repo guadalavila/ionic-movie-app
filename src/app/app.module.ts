@@ -8,7 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
-
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,7 +20,9 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    ImagePicker,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
