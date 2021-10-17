@@ -11,7 +11,7 @@ export class ItemMovieComponent implements OnInit {
   @Input()
   movie: Movie;
 
-  stars: string[] =[];
+  stars: string[] = [];
 
   constructor() { }
 

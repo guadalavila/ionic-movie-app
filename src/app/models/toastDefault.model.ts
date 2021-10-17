@@ -1,4 +1,4 @@
-export interface ToastDefault{
+export interface ToastDefault {
     message: string;
     header?: string;
     position?: 'top' | 'bottom' | 'middle';

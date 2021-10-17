@@ -14,7 +14,7 @@ export class RateMovieComponent implements OnInit {
 
   icons: string[] = [];
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.generateRate();

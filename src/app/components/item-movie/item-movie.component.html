@@ -6,12 +6,7 @@
     <h2>{{ movie?.name }}</h2>
     <p>{{ movie?.description }}</p>
     <p>
-      <ion-icon
-        *ngFor="let star of stars"
-        slot="icon-only"
-        [name]="star"
-        color="warning"
-      ></ion-icon>
+      <ion-icon *ngFor="let star of stars" slot="icon-only" [name]="star" color="warning"></ion-icon>
     </p>
   </ion-label>
 </ion-item>

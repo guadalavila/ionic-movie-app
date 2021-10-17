@@ -9,6 +9,6 @@ export class SkeletonComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

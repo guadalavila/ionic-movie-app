@@ -9,7 +9,7 @@ describe('ItemMovieComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemMovieComponent ],
+      declarations: [ItemMovieComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
