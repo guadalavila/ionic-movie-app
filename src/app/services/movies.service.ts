@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { API_MUSIC_URL } from '../config/const';
 import { Movie } from '../models/movie.model';
 
 @Injectable({
@@ -13,7 +9,7 @@ import { Movie } from '../models/movie.model';
 export class MoviesService {
   constructor(private firestore: AngularFirestore) {}
 
-  getMovies(){
+  getMovies() {
     return this.firestore.collection('movies').snapshotChanges();
   }
 
@@ -27,5 +23,9 @@ export class MoviesService {
 
   deleteMovie(id: string) {
     return this.firestore.collection('movies').doc(id).delete();
+  }
+
+  getNewReleases() {
+    return fetch(API_MUSIC_URL).then((res) => res.json());
   }
 }
