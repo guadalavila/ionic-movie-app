@@ -99,9 +99,6 @@ export class MovieDetailPage implements OnInit {
           text: 'Cancelar',
           icon: 'close',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          },
         },
       ],
     });

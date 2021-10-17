@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button color="light"></ion-back-button>
+      <ion-back-button color="light" text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Editar</ion-title>
   </ion-toolbar>
@@ -23,13 +23,10 @@
       <ion-label position="fixed">Categoria</ion-label>
       <ion-input type="text" formControlName="category"></ion-input>
     </ion-item>
-    <ion-item lines="none">
-      <ion-label position="fixed">Valoración</ion-label>
+    <ion-item>
+      <ion-label position="fixed">Año</ion-label>
+      <ion-input type="number" formControlName="year"></ion-input>
     </ion-item>
-    <app-rate-movie
-      [stars]="movie.stars"
-      (updateMovie)="updateMovieRate($event)"
-    ></app-rate-movie>
     <ion-button
       type="submit"
       class="ion-margin-vertical"

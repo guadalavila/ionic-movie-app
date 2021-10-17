@@ -38,6 +38,10 @@ export class MovieEditPage implements OnInit {
         this.movie.category,
         Validators.compose([Validators.minLength(2), Validators.required]),
       ],
+      year: [
+        this.movie.year,
+        Validators.compose([Validators.minLength(4),Validators.maxLength(4), Validators.required]),
+      ]
     });
   }
 

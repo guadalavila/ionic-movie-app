@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'movies',
     pathMatch: 'full'
   },
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'movies',
-    loadChildren: () => import('./pages/movies/movies.module').then( m => m.MoviesPageModule)
+    loadChildren: () => import('./pages/movies/movies.module').then( m => m.MoviesPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'movies/detail',
@@ -29,7 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
+    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule),
+    canActivate: [AuthGuard]
   },
 ];
 
