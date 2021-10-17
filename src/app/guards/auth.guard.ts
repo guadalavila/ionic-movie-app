@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -17,18 +17,18 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const user = await this.authService.getUser();
-          if (user) {
-            resolve(true);
-          } else {
-            this.router.navigateByUrl('/login');
-            reject(false);
-          }
-        } catch (error) {
-          reject(error);
+    return new Promise(async (resolve, reject) => {
+      try {
+        const user = await this.authService.getUser();
+        if (user) {
+          resolve(true);
+        } else {
+          this.router.navigateByUrl('/login');
+          reject(false);
         }
-      });
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 }

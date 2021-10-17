@@ -12,12 +12,7 @@
 </ion-header>
 <ion-content class="background-content">
   <div class="btn-add-favorite">
-    <ion-button
-      fill="clear"
-      size="large"
-      color="danger"
-      (click)="addRemoveToFavorite()"
-    >
+    <ion-button fill="clear" size="large" color="danger" (click)="addRemoveToFavorite()">
       <ion-icon *ngIf="isFavorite" name="heart" slot="end"></ion-icon>
       <ion-icon *ngIf="!isFavorite" name="heart-outline" slot="end"></ion-icon>
     </ion-button>
@@ -28,10 +23,7 @@
   <ion-text color="dark" class="ion-text-center">
     <h3>{{ movie.name }}</h3>
   </ion-text>
-  <app-rate-movie
-    [stars]="movie.stars"
-    (updateMovie)="updateMovieRate($event)"
-  ></app-rate-movie>
+  <app-rate-movie [stars]="movie.stars" (updateMovie)="updateMovieRate($event)"></app-rate-movie>
   <ion-item lines="none">
     <ion-label class="ion-text-right">
       <ion-badge color="dark" slot="end">{{ movie.category }}</ion-badge>

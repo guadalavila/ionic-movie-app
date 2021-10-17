@@ -9,7 +9,7 @@ describe('FavoritesPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FavoritesPage ],
+      declarations: [FavoritesPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

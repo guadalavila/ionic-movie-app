@@ -27,4 +27,4 @@ const routes: Routes = [
   ],
   declarations: [FavoritesPage]
 })
-export class FavoritesPageModule {}
+export class FavoritesPageModule { }

@@ -11,7 +11,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class FavoritesPage implements OnInit {
   albums: Album[] = [];
 
-  constructor(private moviesService: MoviesService, private helperService: HelpersService) {}
+  constructor(private moviesService: MoviesService, private helperService: HelpersService) { }
 
   ngOnInit() {
     this.getNews();
@@ -25,12 +25,12 @@ export class FavoritesPage implements OnInit {
     loading.present();
     this.moviesService.getNewReleases().then(
       (res) => {
-        this.albums =res.albums?.items.map((release) => ({
-            name: release.name,
-            artist: release.artists[0].name,
-            image: release.images[0].url
-          }));
-          loading.dismiss();
+        this.albums = res.albums?.items.map((release) => ({
+          name: release.name,
+          artist: release.artists[0].name,
+          image: release.images[0].url
+        }));
+        loading.dismiss();
       },
       (err) => {
         loading.dismiss();

@@ -10,28 +10,28 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'signin',
-    loadChildren: () => import('./pages/signin/signin.module').then( m => m.SigninPageModule)
+    loadChildren: () => import('./pages/signin/signin.module').then(m => m.SigninPageModule)
   },
   {
     path: 'movies',
-    loadChildren: () => import('./pages/movies/movies.module').then( m => m.MoviesPageModule),
+    loadChildren: () => import('./pages/movies/movies.module').then(m => m.MoviesPageModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'movies/detail',
-    loadChildren: () => import('./pages/movie-detail/movie-detail.module').then( m => m.MovieDetailPageModule)
+    loadChildren: () => import('./pages/movie-detail/movie-detail.module').then(m => m.MovieDetailPageModule)
   },
   {
     path: 'movies/detail/edit',
-    loadChildren: () => import('./pages/movie-edit/movie-edit.module').then( m => m.MovieEditPageModule)
+    loadChildren: () => import('./pages/movie-edit/movie-edit.module').then(m => m.MovieEditPageModule)
   },
   {
     path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule),
+    loadChildren: () => import('./pages/favorites/favorites.module').then(m => m.FavoritesPageModule),
     canActivate: [AuthGuard]
   },
 ];

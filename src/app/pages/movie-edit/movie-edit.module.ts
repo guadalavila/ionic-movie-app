@@ -27,4 +27,4 @@ const routes: Routes = [
   ],
   declarations: [MovieEditPage]
 })
-export class MovieEditPageModule {}
+export class MovieEditPageModule { }

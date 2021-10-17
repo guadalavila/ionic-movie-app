@@ -19,7 +19,7 @@ export class SigninPage implements OnInit {
     public helperService: HelpersService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({

@@ -9,10 +9,10 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./movies.page.scss'],
 })
 export class MoviesPage implements OnInit {
-  movieList: Movie[] =[];
+  movieList: Movie[] = [];
   loading = true;
 
-  constructor(private router: Router, private moviesService: MoviesService) {}
+  constructor(private router: Router, private moviesService: MoviesService) { }
 
   ngOnInit() {
     this.getMovies();
@@ -21,16 +21,16 @@ export class MoviesPage implements OnInit {
 
 
   getMovies() {
-    this.moviesService.getMovies().subscribe(res =>{
-      this.movieList = res.map((movie) =>({
-            id: movie.payload.doc.id,
-            ...movie.payload.doc.data() as Movie
-          }));
+    this.moviesService.getMovies().subscribe(res => {
+      this.movieList = res.map((movie) => ({
+        id: movie.payload.doc.id,
+        ...movie.payload.doc.data() as Movie
+      }));
       this.loading = false;
     });
   }
 
   goToDetail(currentMovie: Movie) {
-    this.router.navigate(['/movies/detail'], { state: {...currentMovie } });
+    this.router.navigate(['/movies/detail'], { state: { ...currentMovie } });
   }
 }

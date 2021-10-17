@@ -9,7 +9,7 @@ describe('MovieDetailPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieDetailPage ],
+      declarations: [MovieDetailPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

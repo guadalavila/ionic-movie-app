@@ -14,7 +14,7 @@ export class HelpersService {
     public toastController: ToastController,
     public alertController: AlertController,
     private loadingController: LoadingController
-  ) {}
+  ) { }
 
   getCssClass(type: string) {
     switch (type) {
@@ -49,16 +49,16 @@ export class HelpersService {
   }
 
 
-  showAlertConfirm(header: string, message: string, handlerPress: any){
+  showAlertConfirm(header: string, message: string, handlerPress: any) {
     return this.alertController.create({
       header,
       message,
       backdropDismiss: false,
       buttons: [
-      {
+        {
           text: 'Aceptar',
           handler: () => handlerPress()
-      }]
+        }]
     });
   }
 }

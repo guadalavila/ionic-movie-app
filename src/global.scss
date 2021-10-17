@@ -26,16 +26,16 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .toast-style-danger {
-  color: var(--ion-color-light);
-  --background: var(--ion-color-danger);
+    color: var(--ion-color-light);
+    --background: var(--ion-color-danger);
 }
 
 .toast-style-warning {
-  color: var(--ion-color-light);
-  --background: var(--ion-color-warning);
+    color: var(--ion-color-light);
+    --background: var(--ion-color-warning);
 }
 
 .toast-style-success {
-  color: var(--ion-color-light);
-  --background: var(--ion-color-success);
+    color: var(--ion-color-light);
+    --background: var(--ion-color-success);
 }

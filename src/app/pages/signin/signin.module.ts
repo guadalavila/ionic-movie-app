@@ -8,7 +8,7 @@ import { SigninPage } from './signin.page';
 
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes  = [
+const routes: Routes = [
   {
     path: '',
     component: SigninPage
@@ -25,4 +25,4 @@ const routes: Routes  = [
   ],
   declarations: [SigninPage]
 })
-export class SigninPageModule {}
+export class SigninPageModule { }

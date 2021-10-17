@@ -7,7 +7,7 @@ import { Movie } from '../models/movie.model';
   providedIn: 'root',
 })
 export class MoviesService {
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore) { }
 
   getMovies() {
     return this.firestore.collection('movies').snapshotChanges();

@@ -25,4 +25,4 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

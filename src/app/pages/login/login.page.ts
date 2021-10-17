@@ -13,7 +13,6 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class LoginPage implements OnInit {
   ionicForm: FormGroup;
-  isSubmitted = false;
   image = '../../../assets/images/camera.png';
 
   constructor(
@@ -22,7 +21,8 @@ export class LoginPage implements OnInit {
     public navController: NavController,
     private authService: AuthService,
     private imageService: ImageService
-  ) {}
+  ) { }
+
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
@@ -50,6 +50,7 @@ export class LoginPage implements OnInit {
       this.ionicForm.controls.email.errors?.required &&
       this.ionicForm.controls.password.errors?.required
     ) {
+
       return 'Debe completar el email y contraseña';
     } else if (this.ionicForm.controls.email.errors?.required) {
       return 'Email obligatorio';
@@ -63,7 +64,6 @@ export class LoginPage implements OnInit {
   }
 
   async submitForm() {
-    this.isSubmitted = true;
     if (!this.ionicForm.valid) {
       this.presentToast(this.getErrorMessage);
       return false;
@@ -72,7 +72,7 @@ export class LoginPage implements OnInit {
       const loading = await this.helperService.showLoading('Ingresando');
       loading.present();
       this.authService.signinUser(user.email, user.password).then(
-        (res) => {
+        () => {
           loading.dismiss();
           this.navController.navigateRoot('/movies');
         },
@@ -88,10 +88,9 @@ export class LoginPage implements OnInit {
   }
 
   selectImage() {
-    this.imageService.getImage().then(
-      (imageSelect) => {
-        this.image = imageSelect;
-      },
+    this.imageService.getImage().then((imageSelect) => {
+      this.image = imageSelect;
+    },
       () => {
         this.presentToast('Error al cargar imagen');
       }

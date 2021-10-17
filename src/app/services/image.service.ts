@@ -8,7 +8,7 @@ import {
   providedIn: 'root',
 })
 export class ImageService {
-  constructor(private imagePicker: ImagePicker) {}
+  constructor(private imagePicker: ImagePicker) { }
 
   getImage(): Promise<string> {
     const option: ImagePickerOptions = {
@@ -19,15 +19,14 @@ export class ImageService {
       outputType: 1,
     };
     return new Promise((resolve, reject) => {
-      this.imagePicker.getPictures(option).then(
-        (results) => {
-          if (results[0]) {
-            const image = `data:image/jpeg;base64,${results[0]}`;
-            resolve(image);
-          }else{
-            reject('');
-          }
-        },
+      this.imagePicker.getPictures(option).then((results) => {
+        if (results[0]) {
+          const image = `data:image/jpeg;base64,${results[0]}`;
+          resolve(image);
+        } else {
+          reject('');
+        }
+      },
         (err) => {
           reject(err.message);
         }

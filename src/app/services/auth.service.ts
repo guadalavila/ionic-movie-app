@@ -11,7 +11,7 @@ export class AuthService {
   constructor(
     private fireAuth: AngularFireAuth,
     private firestore: AngularFirestore
-  ) {}
+  ) { }
 
   createUser(email: string, password: string) {
     return new Promise<any>((resolve, reject) => {
@@ -47,7 +47,7 @@ export class AuthService {
     });
   }
 
-  getUser(){
+  getUser() {
     return this.fireAuth.authState.pipe(first()).toPromise();
   }
 }
