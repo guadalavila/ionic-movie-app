@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { API_MUSIC_URL, API_MOVIE_URL } from '../config/const';
+import { API_MOVIE_URL } from '../config/const';
 import { Movie } from '../models/movie';
 
 @Injectable({
@@ -25,10 +25,6 @@ export class MoviesService {
 
   deleteMovie(id: string) {
     return this.firestore.collection('movies').doc(id).delete();
-  }
-
-  getNewReleases(): Promise<any> {
-    return fetch(API_MUSIC_URL).then((res) => res.json());
   }
 
   getDiscoverMovies(): Observable<any> {
