@@ -20,21 +20,22 @@ export class RateMovieComponent implements OnInit {
     this.generateRate();
   }
 
-  generateRate() {
-    this.icons = [];
-    for (let i = 1; i <= this.stars; i++) {
-      this.icons.push('star');
-    }
-    for (let i = this.stars; i < 5; i++) {
-      this.icons.push('star-outline');
-    }
-  }
 
   updateRateFilm(updateStar: number) {
     if (this.stars !== updateStar) {
       this.stars = updateStar;
       this.updateMovie.emit(this.stars);
       this.generateRate();
+    }
+  }
+
+  private generateRate() {
+    this.icons = [];
+    for (let i = 1; i <= this.stars; i++) {
+      this.icons.push('star');
+    }
+    for (let i = this.stars; i < 5; i++) {
+      this.icons.push('star-outline');
     }
   }
 }
