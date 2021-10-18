@@ -18,19 +18,19 @@ export class MoviesPage implements OnInit {
     this.getMovies();
   }
 
+  public goToDetail(currentMovie: Movie) {
+    this.router.navigate(['/movies/detail'], { state: { ...currentMovie } });
+  }
 
-
-  getMovies() {
+  private getMovies() {
     this.moviesService.getMovies().subscribe(res => {
       this.movieList = res.map((movie) => ({
         id: movie.payload.doc.id,
         ...movie.payload.doc.data() as Movie
       }));
       this.loading = false;
+    }, () => {
+      this.loading = false;
     });
-  }
-
-  goToDetail(currentMovie: Movie) {
-    this.router.navigate(['/movies/detail'], { state: { ...currentMovie } });
   }
 }

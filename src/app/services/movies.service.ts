@@ -25,7 +25,7 @@ export class MoviesService {
     return this.firestore.collection('movies').doc(id).delete();
   }
 
-  getNewReleases() {
+  getNewReleases(): Promise<any> {
     return fetch(API_MUSIC_URL).then((res) => res.json());
   }
 }

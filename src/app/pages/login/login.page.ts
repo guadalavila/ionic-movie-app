@@ -26,31 +26,44 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-        ],
-      ],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),],],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  async presentToast(message: string) {
-    const toast = await this.helperService.showToast({
-      message,
-      type: 'error',
+  public async submitForm() {
+    if (!this.ionicForm.valid) {
+      this.presentToast(this.getErrorMessage);
+      return false;
+    } else {
+      const user = this.ionicForm.value as User;
+      const loading = await this.helperService.showLoading('Ingresando');
+      loading.present();
+      this.authService.signinUser(user.email, user.password).then(() => {
+        loading.dismiss();
+        this.navController.navigateRoot('/movies');
+      }, () => {
+        loading.dismiss();
+        this.presentToast('Error al ingresar, email o contraseña incorrectos');
+      });
+    }
+  }
+
+  public selectImage() {
+    this.imageService.getImage().then((imageSelect) => {
+      this.image = imageSelect;
+    }, () => {
+      this.presentToast('Error al cargar imagen');
     });
+  }
+
+  private async presentToast(message: string) {
+    const toast = await this.helperService.showToast({ message, type: 'error' });
     toast.present();
   }
 
-  get getErrorMessage() {
-    if (
-      this.ionicForm.controls.email.errors?.required &&
-      this.ionicForm.controls.password.errors?.required
-    ) {
-
+  private get getErrorMessage() {
+    if (this.ionicForm.controls.email.errors?.required && this.ionicForm.controls.password.errors?.required) {
       return 'Debe completar el email y contraseña';
     } else if (this.ionicForm.controls.email.errors?.required) {
       return 'Email obligatorio';
@@ -61,39 +74,5 @@ export class LoginPage implements OnInit {
     } else if (this.ionicForm.controls.password.errors?.minlength) {
       return 'La contraseña debe tener como mínimo una longitud de 6 caracteres';
     }
-  }
-
-  async submitForm() {
-    if (!this.ionicForm.valid) {
-      this.presentToast(this.getErrorMessage);
-      return false;
-    } else {
-      const user = this.ionicForm.value as User;
-      const loading = await this.helperService.showLoading('Ingresando');
-      loading.present();
-      this.authService.signinUser(user.email, user.password).then(
-        () => {
-          loading.dismiss();
-          this.navController.navigateRoot('/movies');
-        },
-        () => {
-          loading.dismiss();
-          this.presentToast(
-            'Error al ingresar, email o contraseña incorrectos'
-          );
-        }
-      );
-      return true;
-    }
-  }
-
-  selectImage() {
-    this.imageService.getImage().then((imageSelect) => {
-      this.image = imageSelect;
-    },
-      () => {
-        this.presentToast('Error al cargar imagen');
-      }
-    );
   }
 }

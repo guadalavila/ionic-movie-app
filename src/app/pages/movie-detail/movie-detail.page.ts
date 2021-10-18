@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  ActionSheetController,
-  AlertController,
-  LoadingController,
-  ModalController,
-} from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
 import { PROPERTY_FAVORITES } from 'src/app/config/const';
 import { Movie } from 'src/app/models/movie.model';
 import { EventsService } from 'src/app/services/events.service';
+import { HelpersService } from 'src/app/services/helpers.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -28,8 +24,7 @@ export class MovieDetailPage implements OnInit {
     public alertController: AlertController,
     private utilsService: UtilsService,
     private moviesService: MoviesService,
-    public loadingController: LoadingController,
-    private modalController: ModalController,
+    private helpersService: HelpersService,
     public event: EventsService
   ) {
     this.event.getObservable().subscribe((data) => {
@@ -46,22 +41,23 @@ export class MovieDetailPage implements OnInit {
 
   ionViewDidEnter() {
     if (this.refreshMovie) {
-      this.updateMovie();
+      this.moviesService.getMovie(this.movie.id).subscribe((res) => {
+        this.movie = res as Movie;
+      });
     }
   }
 
-
-  updateMovie() {
-    this.moviesService.getMovie(this.movie.id).subscribe((res) => {
-      this.movie = res as Movie;
-    });
-  }
-
-  showMoreActions() {
+  public showMoreActions() {
     this.presentActionSheet();
   }
 
-  async presentActionSheet() {
+  public updateMovieRate(stars: number) {
+    const movie: Movie = this.movie;
+    movie.stars = stars;
+    this.moviesService.updateMovie(movie.id, movie);
+  }
+
+  private async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
       header: 'Opciones',
       buttons: [
@@ -69,16 +65,6 @@ export class MovieDetailPage implements OnInit {
           text: 'Editar Pelicula',
           icon: 'pencil',
           handler: async () => {
-            // const modal = await this.modalController.create({
-            //   component: EditMovieComponent,
-            //   swipeToClose: true,
-            //   mode: 'md',
-            //   animated: true,
-            //   backdropDismiss: true,
-            //   componentProps: { ...this.movie}
-            // });
-            // return await modal.present();
-            // this.router.navigateByUrl('movies/detail/edit');
             this.router.navigate(['/movies/detail/edit'], {
               state: { ...this.movie },
             });
@@ -103,10 +89,9 @@ export class MovieDetailPage implements OnInit {
       ],
     });
     await actionSheet.present();
-    const { role } = await actionSheet.onDidDismiss();
   }
 
-  async presentAlertDelete() {
+  private async presentAlertDelete() {
     const alert = await this.alertController.create({
       header: 'Eliminar',
       message: '¿Está seguro que desea eliminar la pelicula?',
@@ -118,23 +103,22 @@ export class MovieDetailPage implements OnInit {
         {
           text: 'Confirmar',
           handler: async () => {
-            const loading = await this.loadingController.create({
-              message: 'Eliminando...',
-            });
+            const loading = await this.helpersService.showLoading('Eliminando...');
             loading.present();
             this.moviesService.deleteMovie(this.movie.id).then(() => {
               loading.dismiss();
               this.router.navigateByUrl('/movies');
+            }, () => {
+              loading.dismiss();
             });
           },
         },
       ],
     });
-
     await alert.present();
   }
 
-  addRemoveToFavorite() {
+  private addRemoveToFavorite() {
     const favorites = JSON.parse(
       this.utilsService.getKeyLocalStorage(PROPERTY_FAVORITES)
     );
@@ -161,9 +145,4 @@ export class MovieDetailPage implements OnInit {
     this.isFavorite ? (this.isFavorite = false) : (this.isFavorite = true);
   }
 
-  updateMovieRate(stars: number) {
-    const movie: Movie = this.movie;
-    movie.stars = stars;
-    this.moviesService.updateMovie(movie.id, movie);
-  }
 }

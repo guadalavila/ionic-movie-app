@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import 'firebase/firestore';
 import { first } from 'rxjs/operators';
 
@@ -8,10 +7,7 @@ import { first } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private fireAuth: AngularFireAuth,
-    private firestore: AngularFirestore
-  ) { }
+  constructor(private fireAuth: AngularFireAuth) { }
 
   createUser(email: string, password: string) {
     return new Promise<any>((resolve, reject) => {
@@ -34,12 +30,9 @@ export class AuthService {
   signoutUser() {
     return new Promise<void>((resolve, reject) => {
       if (this.fireAuth.currentUser) {
-        this.fireAuth
-          .signOut()
-          .then(() => {
-            console.log('Sign out');
-            resolve();
-          })
+        this.fireAuth.signOut().then(() => {
+          resolve();
+        })
           .catch(() => {
             reject();
           });

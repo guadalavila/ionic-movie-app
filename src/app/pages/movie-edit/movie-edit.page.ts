@@ -21,7 +21,7 @@ export class MovieEditPage implements OnInit {
     private helperService: HelpersService,
     private movieService: MoviesService,
     public events: EventsService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.movie = this.router.getCurrentNavigation().extras.state as Movie;
@@ -40,21 +40,13 @@ export class MovieEditPage implements OnInit {
       ],
       year: [
         this.movie.year,
-        Validators.compose([Validators.minLength(4),Validators.maxLength(4), Validators.required]),
+        Validators.compose([Validators.minLength(4), Validators.maxLength(4), Validators.required]),
       ]
     });
   }
 
-  async showError() {
-    const toast = await this.helperService.showToast({
-      header: 'Error',
-      message: 'Algunos datos no son correctos',
-      type: 'error'
-    });
-    toast.present();
-  }
 
-  async editMovie() {
+  public async editMovie() {
     if (this.ionicForm.valid) {
       const movieUpdate: Movie = { ...this.movie, ...this.ionicForm.value };
       const loading = await this.helperService.showLoading('Actualizando');
@@ -68,4 +60,14 @@ export class MovieEditPage implements OnInit {
       this.showError();
     }
   }
+
+  private async showError() {
+    const toast = await this.helperService.showToast({
+      header: 'Error',
+      message: 'Algunos datos no son correctos',
+      type: 'error'
+    });
+    toast.present();
+  }
+
 }

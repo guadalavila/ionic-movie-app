@@ -16,19 +16,6 @@ export class HelpersService {
     private loadingController: LoadingController
   ) { }
 
-  getCssClass(type: string) {
-    switch (type) {
-      case 'success':
-        return 'toast-style-success';
-      case 'warning':
-        return 'toast-style-warning';
-      case 'error':
-        return 'toast-style-danger';
-      default:
-        return '';
-    }
-  }
-
   showToast(toast: ToastDefault) {
     return this.toastController.create({
       animated: true,
@@ -60,5 +47,18 @@ export class HelpersService {
           handler: () => handlerPress()
         }]
     });
+  }
+
+  private getCssClass(type: string): string {
+    switch (type) {
+      case 'success':
+        return 'toast-style-success';
+      case 'warning':
+        return 'toast-style-warning';
+      case 'error':
+        return 'toast-style-danger';
+      default:
+        return '';
+    }
   }
 }

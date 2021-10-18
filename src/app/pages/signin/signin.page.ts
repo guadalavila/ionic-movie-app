@@ -12,7 +12,6 @@ import { HelpersService } from 'src/app/services/helpers.service';
 })
 export class SigninPage implements OnInit {
   ionicForm: FormGroup;
-  isSubmitted = false;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -23,18 +22,32 @@ export class SigninPage implements OnInit {
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-        ],
-      ],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),],],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  async presentToast(message: string) {
+  public async submitForm() {
+    if (!this.ionicForm.valid) {
+      this.presentToast(this.getErrorMessage);
+    } else {
+      const loading = await this.helperService.showLoading('Registrando');
+      loading.present();
+      const userCreate = this.ionicForm.value as User;
+      this.authService.createUser(userCreate.email, userCreate.password).then(() => {
+        loading.dismiss();
+        this.helperService.showAlertConfirm(
+          'Usuario Registrado',
+          'Se registró correctamente el usuario',
+          () => this.router.navigateByUrl('/login')).then((alert) => alert.present());
+      }, () => {
+        loading.dismiss();
+        this.presentToast('El usuario ingresado ya se encuentra registrado');
+      });
+    }
+  }
+
+  private async presentToast(message: string) {
     const toast = await this.helperService.showToast({
       header: 'Error',
       message,
@@ -43,7 +56,7 @@ export class SigninPage implements OnInit {
     toast.present();
   }
 
-  get getErrorMessage() {
+  private get getErrorMessage() {
     if (
       this.ionicForm.controls.email.errors?.required &&
       this.ionicForm.controls.password.errors?.required
@@ -57,34 +70,6 @@ export class SigninPage implements OnInit {
       return 'Contraseña obligatoria';
     } else if (this.ionicForm.controls.password.errors?.minlength) {
       return 'La contraseña debe tener como mínimo una longitud de 6 caracteres';
-    }
-  }
-
-  async submitForm() {
-    this.isSubmitted = true;
-    if (!this.ionicForm.valid) {
-      this.presentToast(this.getErrorMessage);
-      return false;
-    } else {
-      const loading = await this.helperService.showLoading('Registrando');
-      loading.present();
-      const userCreate = this.ionicForm.value as User;
-      this.authService.createUser(userCreate.email, userCreate.password).then(
-        () => {
-          loading.dismiss();
-          this.helperService
-            .showAlertConfirm(
-              'Usuario Registrado',
-              'se registró correctamente el usuario',
-              () => this.router.navigateByUrl('/login')
-            )
-            .then((a) => a.present());
-        },
-        (error) => {
-          loading.dismiss();
-          this.presentToast('Error al registrar usuario');
-        }
-      );
     }
   }
 }

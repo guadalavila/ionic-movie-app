@@ -17,24 +17,20 @@ export class FavoritesPage implements OnInit {
     this.getNews();
   }
 
-  ionViewDidEnter() {
-  }
 
-  async getNews() {
+  private async getNews() {
     const loading = await this.helperService.showLoading('Cargando...');
     loading.present();
     this.moviesService.getNewReleases().then(
       (res) => {
-        this.albums = res.albums?.items.map((release) => ({
+        this.albums = res?.albums?.items.map((release) => ({
           name: release.name,
           artist: release.artists[0].name,
           image: release.images[0].url
         }));
         loading.dismiss();
-      },
-      (err) => {
+      }, () => {
         loading.dismiss();
-        console.log(err);
       }
     );
   }

@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ImagePicker,
-  ImagePickerOptions,
-} from '@ionic-native/image-picker/ngx';
+import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx';
 
 @Injectable({
   providedIn: 'root',
@@ -24,12 +21,11 @@ export class ImageService {
           const image = `data:image/jpeg;base64,${results[0]}`;
           resolve(image);
         } else {
-          reject('');
+          reject();
         }
-      },
-        (err) => {
-          reject(err.message);
-        }
+      }, (err) => {
+        reject(err.message);
+      }
       );
     });
   }
