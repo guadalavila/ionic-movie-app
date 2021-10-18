@@ -1,7 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-buttons slot="end" size="small" fill="clear" routerLink="/favorites">
-      <ion-icon slot="icon-only" name="musical-note"></ion-icon>
+    <ion-buttons slot="end" size="small">
+      <ion-button routerLink="discover">
+        <ion-icon slot="icon-only" name="film-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="logOut()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>Peliculas</ion-title>
   </ion-toolbar>

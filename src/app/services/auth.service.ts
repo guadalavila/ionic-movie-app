@@ -32,10 +32,9 @@ export class AuthService {
       if (this.fireAuth.currentUser) {
         this.fireAuth.signOut().then(() => {
           resolve();
-        })
-          .catch(() => {
-            reject();
-          });
+        }).catch(() => {
+          reject();
+        });
       }
     });
   }

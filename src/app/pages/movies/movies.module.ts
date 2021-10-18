@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MoviesPage } from './movies.page';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
@@ -13,7 +13,8 @@ const routes: Routes = [
   {
     path: '',
     component: MoviesPage
-  }
+  },
+
 ];
 
 @NgModule({

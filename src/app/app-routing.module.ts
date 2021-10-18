@@ -18,21 +18,25 @@ const routes: Routes = [
   },
   {
     path: 'movies',
-    loadChildren: () => import('./pages/movies/movies.module').then(m => m.MoviesPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'movies/detail',
-    loadChildren: () => import('./pages/movie-detail/movie-detail.module').then(m => m.MovieDetailPageModule)
-  },
-  {
-    path: 'movies/detail/edit',
-    loadChildren: () => import('./pages/movie-edit/movie-edit.module').then(m => m.MovieEditPageModule)
-  },
-  {
-    path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.module').then(m => m.FavoritesPageModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/movies/movies.module').then(m => m.MoviesPageModule),
+      },
+      {
+        path: 'detail',
+        loadChildren: () => import('./pages/movies/detail/detail.module').then(m => m.DetailPageModule),
+      },
+      {
+        path: 'edit',
+        loadChildren: () => import('./pages/movies/edit/edit.module').then(m => m.EditPageModule)
+      },
+      {
+        path: 'discover',
+        loadChildren: () => import('./pages/movies/discover/discover.module').then(m => m.DiscoverPageModule)
+      },
+    ]
   },
 ];
 

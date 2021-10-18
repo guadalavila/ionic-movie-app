@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 
-import { MovieEditPage } from './movie-edit.page';
+import { DetailPage } from './detail.page';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: MovieEditPage
+    component: DetailPage
   }
 ];
 
@@ -20,11 +20,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [MovieEditPage]
+  declarations: [DetailPage]
 })
-export class MovieEditPageModule { }
+export class DetailPageModule { }

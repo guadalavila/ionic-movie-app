@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { HelpersService } from 'src/app/services/helpers.service';
 import { ImageService } from 'src/app/services/image.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginPage implements OnInit {
     public helperService: HelpersService,
     public navController: NavController,
     private authService: AuthService,
-    private imageService: ImageService
+    private imageService: ImageService,
   ) { }
 
 

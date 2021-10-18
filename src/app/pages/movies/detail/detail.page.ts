@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { PROPERTY_FAVORITES } from 'src/app/config/const';
-import { Movie } from 'src/app/models/movie.model';
+import { Movie } from 'src/app/models/movie';
 import { EventsService } from 'src/app/services/events.service';
 import { HelpersService } from 'src/app/services/helpers.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
-  selector: 'app-movie-detail',
-  templateUrl: './movie-detail.page.html',
-  styleUrls: ['./movie-detail.page.scss'],
+  selector: 'app-detail',
+  templateUrl: './detail.page.html',
+  styleUrls: ['./detail.page.scss'],
 })
-export class MovieDetailPage implements OnInit {
+export class DetailPage implements OnInit {
+
   public movie: Movie;
   public isFavorite = false;
   private refreshMovie = false;
@@ -65,7 +66,7 @@ export class MovieDetailPage implements OnInit {
           text: 'Editar Pelicula',
           icon: 'pencil',
           handler: async () => {
-            this.router.navigate(['/movies/detail/edit'], {
+            this.router.navigate(['/movies/edit'], {
               state: { ...this.movie },
             });
           },
@@ -144,5 +145,4 @@ export class MovieDetailPage implements OnInit {
     }
     this.isFavorite ? (this.isFavorite = false) : (this.isFavorite = true);
   }
-
 }

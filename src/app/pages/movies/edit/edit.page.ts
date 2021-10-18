@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Movie } from 'src/app/models/movie.model';
+import { Movie } from 'src/app/models/movie';
 import { EventsService } from 'src/app/services/events.service';
 import { HelpersService } from 'src/app/services/helpers.service';
 import { MoviesService } from 'src/app/services/movies.service';
 
+
 @Component({
-  selector: 'app-movie-edit',
-  templateUrl: './movie-edit.page.html',
-  styleUrls: ['./movie-edit.page.scss'],
+  selector: 'app-edit',
+  templateUrl: './edit.page.html',
+  styleUrls: ['./edit.page.scss'],
 })
-export class MovieEditPage implements OnInit {
+export class EditPage implements OnInit {
+
   movie: Movie;
   ionicForm: FormGroup;
 
@@ -69,5 +71,4 @@ export class MovieEditPage implements OnInit {
     });
     toast.present();
   }
-
 }

@@ -4,7 +4,7 @@ import {
   LoadingController,
   ToastController,
 } from '@ionic/angular';
-import { ToastDefault } from '../models/toastDefault.model';
+import { ToastDefault } from '../models/toast';
 
 @Injectable({
   providedIn: 'root',
