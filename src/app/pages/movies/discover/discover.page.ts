@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Discover } from 'src/app/models/discover';
+import { HelpersService } from 'src/app/services/helpers.service';
 import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class DiscoverPage implements OnInit {
   movies: Discover[] = [];
   loading = true;
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService, private helpers: HelpersService) { }
 
   ngOnInit() {
     this.getDiscoverMovies();
@@ -26,9 +27,13 @@ export class DiscoverPage implements OnInit {
         image: `https://image.tmdb.org/t/p/original/${movie.poster_path}`
       }));
       this.loading = false;
-    }, (err) => {
+    }, async () => {
+      const toast = await this.helpers.showToast({
+        message: 'Ocurrio un error al recuperar las peliculas',
+        type: 'error',
+      });
       this.loading = false;
-      console.log(err.message);
+      toast.present();
     });
   }
 

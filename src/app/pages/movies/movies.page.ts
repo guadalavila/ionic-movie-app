@@ -18,45 +18,48 @@ export class MoviesPage implements OnInit {
     private router: Router,
     private moviesService: MoviesService,
     private authService: AuthService,
-    private helpersService: HelpersService) { }
+    private helpersService: HelpersService
+  ) { }
 
   ngOnInit() {
     this.getMovies();
-    this.discoverMovies();
   }
 
   public goToDetail(currentMovie: Movie) {
-    this.router.navigate(['/movies/detail'], { state: { ...currentMovie } });
+    this.router.navigate(['/movies/detail'], {
+      state: { ...currentMovie },
+    });
   }
 
   public async logOut() {
-    const loading = await this.helpersService.showLoading('Cerrando sesión');
-    loading.present();
-    this.authService.signoutUser().then(res => {
-      loading.dismiss();
+    const alert = await this.helpersService.showAlertConfirm(
+      'Cerrar Sesión',
+      '¿Confirma que desea cerrar sesión?',
+      true,
+      () => this.signout(),
+    );
+    alert.present();
+  }
+
+  private signout() {
+    this.authService.signoutUser().then((res) => {
       this.router.navigateByUrl('/login');
-    }, () => {
-      loading.dismiss();
-    });
+    }, () => { }
+    );
   }
 
   private getMovies() {
-    this.moviesService.getMovies().subscribe(res => {
-      this.movieList = res.map((movie) => ({
-        id: movie.payload.doc.id,
-        ...movie.payload.doc.data() as Movie
-      }));
-      this.loading = false;
-    }, () => {
-      this.loading = false;
-    });
-  }
-
-  private discoverMovies() {
-    this.moviesService.getDiscoverMovies().subscribe(res => {
-      console.log(res);
-    }, (err) => {
-      console.log(err.message);
-    });
+    this.moviesService.getMovies().subscribe(
+      (res) => {
+        this.movieList = res.map((movie) => ({
+          id: movie.payload.doc.id,
+          ...(movie.payload.doc.data() as Movie),
+        }));
+        this.loading = false;
+      },
+      () => {
+        this.loading = false;
+      }
+    );
   }
 }

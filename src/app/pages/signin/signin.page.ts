@@ -39,6 +39,7 @@ export class SigninPage implements OnInit {
         this.helperService.showAlertConfirm(
           'Usuario Registrado',
           'Se registró correctamente el usuario',
+          false,
           () => this.router.navigateByUrl('/login')).then((alert) => alert.present());
       }, () => {
         loading.dismiss();

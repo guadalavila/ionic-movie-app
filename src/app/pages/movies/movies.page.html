@@ -11,7 +11,7 @@
     <ion-title>Peliculas</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true" class="background-content">
+<ion-content [fullscreen]="true">
   <app-skeleton *ngIf="loading"></app-skeleton>
   <ion-list *ngFor="let movie of movieList">
     <app-item-movie [movie]="movie" (click)="goToDetail(movie)"></app-item-movie>

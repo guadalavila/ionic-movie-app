@@ -35,18 +35,22 @@ export class HelpersService {
     });
   }
 
-
-  showAlertConfirm(header: string, message: string, handlerPress: any) {
+  showAlertConfirm(header: string, message: string, cancel: boolean, handlerPress: any) {
+    const optCancel = { text: 'Cancelar', role: 'cancel' };
+    const confirm = { text: 'Confirmar', handler: () => handlerPress() };
+    let buttons = [];
+    if (cancel) {
+      buttons = [optCancel, confirm];
+    } else {
+      buttons = [confirm];
+    }
     return this.alertController.create({
       header,
       message,
       backdropDismiss: false,
-      buttons: [
-        {
-          text: 'Aceptar',
-          handler: () => handlerPress()
-        }]
+      buttons
     });
+
   }
 
   private getCssClass(type: string): string {

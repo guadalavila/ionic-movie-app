@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { HelpersService } from 'src/app/services/helpers.service';
 import { ImageService } from 'src/app/services/image.service';
-import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +16,9 @@ export class LoginPage implements OnInit {
   image = '../../../assets/images/camera.png';
 
   constructor(
+    private router: Router,
     public formBuilder: FormBuilder,
     public helperService: HelpersService,
-    public navController: NavController,
     private authService: AuthService,
     private imageService: ImageService,
   ) { }
@@ -42,7 +41,7 @@ export class LoginPage implements OnInit {
       loading.present();
       this.authService.signinUser(user.email, user.password).then(() => {
         loading.dismiss();
-        this.navController.navigateRoot('/movies');
+        this.router.navigateByUrl('/movies', { replaceUrl: true });
       }, () => {
         loading.dismiss();
         this.presentToast('Error al ingresar, email o contraseña incorrectos');
