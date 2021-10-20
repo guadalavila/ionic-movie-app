@@ -18,7 +18,7 @@ export class AuthService {
     });
   }
 
-  signinUser(email, password) {
+  signinUser(email: string, password: string) {
     return new Promise<any>((resolve, reject) => {
       this.fireAuth.signInWithEmailAndPassword(email, password).then(
         (res) => resolve(res),

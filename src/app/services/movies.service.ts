@@ -11,19 +11,19 @@ import { Movie } from '../models/movie';
 export class MoviesService {
   constructor(private firestore: AngularFirestore, private http: HttpClient) { }
 
-  getMovies() {
+  getMovies(): Observable<any> {
     return this.firestore.collection('movies').snapshotChanges();
   }
 
-  getMovie(id: string) {
+  getMovie(id: string): Observable<any> {
     return this.firestore.collection('movies').doc(id).valueChanges();
   }
 
-  updateMovie(id: string, movie: Movie) {
+  updateMovie(id: string, movie: Movie): Promise<void> {
     return this.firestore.collection('movies').doc(id).update(movie);
   }
 
-  deleteMovie(id: string) {
+  deleteMovie(id: string): Promise<void> {
     return this.firestore.collection('movies').doc(id).delete();
   }
 
