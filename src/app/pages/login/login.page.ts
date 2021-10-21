@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { HelpersService } from 'src/app/services/helpers.service';
 import { ImageService } from 'src/app/services/image.service';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginPage implements OnInit {
     public helperService: HelpersService,
     private authService: AuthService,
     private imageService: ImageService,
+    private androidPermissions: AndroidPermissions
   ) { }
 
 
@@ -50,10 +52,20 @@ export class LoginPage implements OnInit {
   }
 
   public selectImage() {
-    this.imageService.getImage().then((imageSelect) => {
-      this.image = imageSelect;
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(result => {
+      if (result.hasPermission) {
+        this.imageService.getImage().then((imageSelect) => {
+          if (imageSelect !== 'data:image/jpeg;base64,O') {
+            this.image = imageSelect;
+          }
+        }, () => {
+          this.presentToast('Error al cargar imagen');
+        });
+      } else {
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA);
+      }
     }, () => {
-      this.presentToast('Error al cargar imagen');
+      this.presentToast('Error al aceptar permisos');
     });
   }
 

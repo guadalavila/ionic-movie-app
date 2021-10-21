@@ -37,3 +37,23 @@ ionic cap run android
 
 ionic cap run ios
 ```
+
+```bash
+npm install jetifier
+npx jetify
+npx cap sync android
+```
+
+#### Crear APK modo depuración
+
+```bash
+cd android
+./gradlew assembleDebug
+```
+
+#### Crear APK modo release
+
+```bash
+cd android
+./gradlew assembleRelease
+```

@@ -9,6 +9,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -22,6 +24,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
   ],
   providers: [
     ImagePicker,
+    AndroidPermissions,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
