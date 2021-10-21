@@ -57,3 +57,17 @@ cd android
 cd android
 ./gradlew assembleRelease
 ```
+
+#### Imagenes
+
+<p align="center">
+    <img  height="250" src="doc/images/Screenshot_login.png">
+    <img  height="250" src="doc/images/Screenshot_login_form.png">
+    <img  height="250" src="doc/images/Screenshot_signin.png">
+    <img  height="250" src="doc/images/Screenshot_movies.png">
+    <img  height="250" src="doc/images/Screenshot_movies_.png">
+    <img  height="250" src="doc/images/Screenshot_movie-detail.png">
+    <img  height="250" src="doc/images/Screenshot_movie-actions.png">
+    <img  height="250" src="doc/images/Screenshot_movie-delete.png">
+
+</p>
